@@ -1,10 +1,14 @@
 # 🚀 MIEE Agenthon 개발환경 셋팅 가이드
 
-본 문서는 MIEE Agenthon 참가자를 위한 개발환경 셋업 매뉴얼입니다.
-Mac 환경 기준으로 작성되었으며,
-Azure Virtual Desktop(AVD) + Copilot Studio 사용을 목표로 합니다.
+## 본 문서는 MIEE Agenthon 참가자를 위한 개발환경 셋업 매뉴얼입니다.
 
-⸻
+>모든 OS에서 동일한 성능, 환경을 제공해드리기 위해 Azure Virtual Desktop(AVD) 환경을 제공 했습니다.
+
+>불가피하게 iPad, Android 환경이시거나 Windows, Mac 환경임에도 성능 이슈가 있으실 경우 아래 AVD 접속 프로세스 부터 시작하시면 되고,
+
+>OS, 성능 이슈가 없으신 경우 굳이 AVD를 사용할 필요 없이, ??번째로 넘어 가시면 됩니다.
+
+---
 
 🧭 전체 진행 흐름
 	1.	Windows App 설치 및 실행
