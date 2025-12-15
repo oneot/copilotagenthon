@@ -4,14 +4,14 @@
 
 >모든 OS에서 동일한 성능, 환경을 제공해드리기 위해 Azure Virtual Desktop(AVD) 환경을 제공 했습니다.
 
->불가피하게 iPad, Android 환경이시거나 Windows, Mac 환경임에도 성능 이슈가 있으실 경우 아래 1️⃣번 AVD 접속 프로세스 부터 시작하시면 되고,
+>불가피하게 iPad, Android 환경이시거나 Windows, Mac 환경임에도 성능 이슈가 있으실 경우 아래 1️⃣ 번 Windows App, AVD 접속 프로세스 부터 시작하시면 되고,
 
 >OS, 성능 이슈가 없으신 경우 굳이 AVD를 사용할 필요 없이, 2️⃣ 번으로 넘어 가시면 됩니다.
 
 ---
 
 ## 🧭 전체 진행 흐름
-	1️⃣	Windows App 설치 및 AVD 접속
+	1️⃣	Windows App 설치 및 실행
 	
 	2️⃣	mieestudio 계정 확인
 	
