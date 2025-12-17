@@ -101,6 +101,8 @@
 <a id="step1"></a>
 ## 1️⃣ Windows App 설치 및 실행 (AVD Client)
 
+<details>
+<summary><strong>🔍 여기를 클릭하여 Windows App 설치 및 실행 절차를 확인하세요</strong></summary>
 Azure Virtual Desktop(AVD)에 접속하기 위해 먼저 **Windows App (AVD Client)** 를 설치합니다.
 
 ### 📥 Windows App 다운로드
@@ -168,6 +170,8 @@ Azure Virtual Desktop(AVD)에 접속하기 위해 먼저 **Windows App (AVD Clie
 <img width="2560" height="1440" alt="스크린샷 2025-12-15 00 20 46" src="https://github.com/user-attachments/assets/48bcb102-59c0-4fff-a5a8-243bc3e7f62b" />
 
 - 접속 에러가 나시는 경우 일단 아래 **2️⃣ Copilot Studio 접속 및 에이전트 게시**로 넘어가세요.
+
+</details>
 
 ---
 
