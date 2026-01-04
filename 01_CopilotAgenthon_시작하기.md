@@ -35,56 +35,58 @@
 
 | Display name | User principal name | Initial Password |
 |---|---|---|
-| Ara Go | ara.go@mieestudio.onmicrosoft.com | Elevate! |
-| Byeongnam Hwang | byeongnam.hwang@mieestudio.onmicrosoft.com | Elevate! |
-| Daesub Kim | daesub.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Dohyeon Kim | dohyeon.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Euiyeop Na | euiyeop.na@mieestudio.onmicrosoft.com | Elevate! |
-| Eunhye Jeong | eunhye.jeong@mieestudio.onmicrosoft.com | Elevate! |
-| Eunji Hwang | eunji.hwang@mieestudio.onmicrosoft.com | Elevate! |
-| Hannah Kim | hannah.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Heekyoung Noh | heekyoung.noh@mieestudio.onmicrosoft.com | Elevate! |
-| Heeyoon Cho | heeyoon.cho@mieestudio.onmicrosoft.com | Elevate! |
-| Heyin Jeong | heyin.jeong@mieestudio.onmicrosoft.com | Elevate! |
-| Hongnyeon Kim | hongnyeon.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Hongsoon Kim | hongsoon.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Hyeongchan Park | hyeongchan.park@mieestudio.onmicrosoft.com | Elevate! |
-| Hyerim Oh | hyerim.oh@mieestudio.onmicrosoft.com | Elevate! |
-| Hyungsu Kim | hyungsu.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Hyungwook Kim | hyungwook.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Hyunjung Kim | hyunjung.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Jaehyun Lee | jaehyun.lee@mieestudio.onmicrosoft.com | Elevate! |
-| Jina Seo | jina.seo@mieestudio.onmicrosoft.com | Elevate! |
-| Jinhyeok Lee | jinhyeok.lee@mieestudio.onmicrosoft.com | Elevate! |
-| Jinwon Kim | jinwon.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Jisun Lee | jisun.lee@mieestudio.onmicrosoft.com | Elevate! |
-| Jiyong Son | jiyong.son@mieestudio.onmicrosoft.com | Elevate! |
-| Jongik Kwon | jongik.kwon@mieestudio.onmicrosoft.com | Elevate! |
-| Jungmin Chae | jungmin.chae@mieestudio.onmicrosoft.com | Elevate! |
-| Juyoung Kim | juyoung.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Kyungim Jang | kyungim.jang@mieestudio.onmicrosoft.com | Elevate! |
-| MinHae Oh | minhae.oh@mieestudio.onmicrosoft.com | Elevate! |
-| Minsang Kim | minsang.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Sangmin Lee (오금중) | sangmin.lee@mieestudio.onmicrosoft.com | Elevate! |
-| Sangmin Lee (진천상산초) | sangminlee@mieestudio.onmicrosoft.com | Elevate! |
-| Sangpyo Kim | sangpyo.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Seokwon Kang | seokwon.kang@mieestudio.onmicrosoft.com | Elevate! |
-| Seongwoong Park | seongwoong.park@mieestudio.onmicrosoft.com | Elevate! |
-| Seoyeon Chun | seoyeon.chun@mieestudio.onmicrosoft.com | Elevate! |
-| Seoyeon Mun | seoyeon.mun@mieestudio.onmicrosoft.com | Elevate! |
-| Sol Im | sol.im@mieestudio.onmicrosoft.com | Elevate! |
-| Soobin Lee | soobin.lee@mieestudio.onmicrosoft.com | Elevate! |
-| Sungho Choi | sungho.choi@mieestudio.onmicrosoft.com | Elevate! |
-| Sunghoon Lee | sunghoon.lee@mieestudio.onmicrosoft.com | Elevate! |
-| Sunghun Go | sunghun.go@mieestudio.onmicrosoft.com | Elevate! |
-| Taegeon Eom | taegeon.eom@mieestudio.onmicrosoft.com | Elevate! |
-| Taegyoung Lee | taegyoung.lee@mieestudio.onmicrosoft.com | Elevate! |
-| Wangwon Kim | wangwon.kim@mieestudio.onmicrosoft.com | Elevate! |
-| Yerin Jeon | yerin.jeon@mieestudio.onmicrosoft.com | Elevate! |
-| Yongmin Seo | yongmin.seo@mieestudio.onmicrosoft.com | Elevate! |
-| Younghoon Bae | younghoon.bae@mieestudio.onmicrosoft.com | Elevate! |
-| Youngsang Cho | youngsang.cho@mieestudio.onmicrosoft.com | Elevate! |
-| Yuseung Ko | yuseung.ko@mieestudio.onmicrosoft.com | Elevate! |
+| Ara Go | ara.go@miee.dev | Elevate! |
+| Byeongnam Hwang | byeongnam.hwang@miee.dev | Elevate! |
+| Daesub Kim | daesub.kim@miee.dev | Elevate! |
+| Dohyeon Kim | dohyeon.kim@miee.dev | Elevate! |
+| Euiyeop Na | euiyeop.na@miee.dev | Elevate! |
+| Eunhye Jeong | eunhye.jeong@miee.dev | Elevate! |
+| Eunji Hwang | eunji.hwang@miee.dev | Elevate! |
+| Hannah Kim | hannah.kim@miee.dev | Elevate! |
+| Heekyoung Noh | heekyoung.noh@miee.dev | Elevate! |
+| Heeyoon Cho | heeyoon.cho@miee.dev | Elevate! |
+| Heyin Jeong | heyin.jeong@miee.dev | Elevate! |
+| Hongnyeon Kim | hongnyeon.kim@miee.dev | Elevate! |
+| Hongsoon Kim | hongsoon.kim@miee.dev | Elevate! |
+| Hyeongchan Park | hyeongchan.park@miee.dev | Elevate! |
+| Hyerim Oh | hyerim.oh@miee.dev | Elevate! |
+| Hyungsu Kim | hyungsu.kim@miee.dev | Elevate! |
+| Hyungwook Kim | hyungwook.kim@miee.dev | Elevate! |
+| Hyunjung Kim | hyunjung.kim@miee.dev | Elevate! |
+| Hyunuk Kang | hyunuk.kang@miee.dev | Elevate! |
+| Jaehyun Lee | jaehyun.lee@miee.dev | Elevate! |
+| Jina Seo | jina.seo@miee.dev | Elevate! |
+| Jinhyeok Lee | jinhyeok.lee@miee.dev | Elevate! |
+| Jinwon Kim | jinwon.kim@miee.dev | Elevate! |
+| Jisun Lee | jisun.lee@miee.dev | Elevate! |
+| Jiyong Son | jiyong.son@miee.dev | Elevate! |
+| Jongik Kwon | jongik.kwon@miee.dev | Elevate! |
+| Jungmin Chae | jungmin.chae@miee.dev | Elevate! |
+| Junwoo Kim | junwoo.kim@miee.dev | Elevate! |
+| Juyoung Kim | juyoung.kim@miee.dev | Elevate! |
+| Kyungim Jang | kyungim.jang@miee.dev | Elevate! |
+| MinHae Oh | minhae.oh@miee.dev | Elevate! |
+| Minsang Kim | minsang.kim@miee.dev | Elevate! |
+| Sangmin Lee (오금중) | sangmin.lee@miee.dev | Elevate! |
+| Sangmin Lee (진천상산초) | sangminlee@miee.dev | Elevate! |
+| Sangpyo Kim | sangpyo.kim@miee.dev | Elevate! |
+| Seokwon Kang | seokwon.kang@miee.dev | Elevate! |
+| Seongwoong Park | seongwoong.park@miee.dev | Elevate! |
+| Seoyeon Chun | seoyeon.chun@miee.dev | Elevate! |
+| Seoyeon Mun | seoyeon.mun@miee.dev | Elevate! |
+| Sol Im | sol.im@miee.dev | Elevate! |
+| Soobin Lee | soobin.lee@miee.dev | Elevate! |
+| Sungho Choi | sungho.choi@miee.dev | Elevate! |
+| Sunghoon Lee | sunghoon.lee@miee.dev | Elevate! |
+| Sunghun Go | sunghun.go@miee.dev | Elevate! |
+| Taegeon Eom | taegeon.eom@miee.dev | Elevate! |
+| Taegyoung Lee | taegyoung.lee@miee.dev | Elevate! |
+| Wangwon Kim | wangwon.kim@miee.dev | Elevate! |
+| Yerin Jeon | yerin.jeon@miee.dev | Elevate! |
+| Yongmin Seo | yongmin.seo@miee.dev | Elevate! |
+| Younghoon Bae | younghoon.bae@miee.dev | Elevate! |
+| Youngsang Cho | youngsang.cho@miee.dev | Elevate! |
+| Yuseung Ko | yuseung.ko@miee.dev | Elevate! |
 
 </details>
 
