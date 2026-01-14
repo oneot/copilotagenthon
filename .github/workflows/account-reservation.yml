@@ -1,0 +1,63 @@
+name: Demo Account Reservation
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  reserve:
+    if: github.event.issue.title == '🧪 Demo Account Reservation'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Parse comment (reserve: N)
+        id: parse
+        shell: bash
+        run: |
+          BODY="${{ github.event.comment.body }}"
+          if [[ "$BODY" =~ reserve:\ ([0-9]+) ]]; then
+            echo "ACCOUNT_ID=${BASH_REMATCH[1]}" >> $GITHUB_ENV
+          else
+            echo "No reserve command found. Exiting."
+            exit 0
+          fi
+
+      - name: Update accounts.json
+        run: |
+          node .github/scripts/reserve.js \
+            $ACCOUNT_ID \
+            "${{ github.event.comment.user.login }}"
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add accounts.json
+          git commit -m "Reserve account $ACCOUNT_ID" || echo "Nothing to commit"
+          git push
+
+      - name: Comment success
+        if: success()
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ✅ Reserved account **${{ env.ACCOUNT_ID }}** for **@${{ github.event.comment.user.login }}**.
+
+      - name: Comment failure
+        if: failure()
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ❌ Failed to reserve account **${{ env.ACCOUNT_ID }}**.
+            - It may already be reserved, or the ID may be invalid.
