@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Demo Account Picker</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 24px; }
+    .top { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .badge { padding:6px 10px; border:1px solid #ddd; border-radius:999px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { border-bottom: 1px solid #eee; padding: 10px 8px; text-align:left; }
+    tr.reserved { opacity: 0.45; }
+    button { padding: 6px 10px; cursor: pointer; }
+    button[disabled] { cursor: not-allowed; }
+    .muted { color:#666; font-size: 13px; }
+    .id { width:60px; }
+  </style>
+</head>
+<body>
+  <h1>🧪 Demo 계정 선택</h1>
+
+  <div class="top">
+    <div class="badge" id="me">로그인 중...</div>
+    <div class="badge" id="stats">로딩 중...</div>
+    <span class="muted">체크(Reserve)하는 순간 모두에게 즉시 반영됩니다.</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="id">ID</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <script type="module">
+    // Firebase v10+ (ESM)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import {
+      getFirestore, collection, doc, onSnapshot, runTransaction, serverTimestamp, query, orderBy
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    // ✅ 여기에 Firebase 콘솔에서 복사한 config 붙여넣기
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtMRjuzCGDsn-IFpUzjD0s86Ey--ARk",
+      authDomain: "accounts-b74f0.firebaseapp.com",
+      projectId: "accounts-b74f0",
+      storageBucket: "accounts-b74f0.appspot.com",
+      messagingSenderId: "729059899668",
+      appId: "1:729059899668:web:f18eee7aa1ee6d15ae6a01"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const meEl = document.getElementById("me");
+    const statsEl = document.getElementById("stats");
+    const rowsEl = document.getElementById("rows");
+
+    function pad2(n){ return String(n).padStart(2,'0'); }
+
+    // 예약(원자적)
+    async function reserveAccount(accountId, uid) {
+      const ref = doc(db, "accounts", pad2(accountId));
+
+      await runTransaction(db, async (tx) => {
+        const snap = await tx.get(ref);
+        if (!snap.exists()) throw new Error("계정이 존재하지 않습니다.");
+
+        const data = snap.data();
+        if (data.status !== "available") throw new Error("이미 선택된 계정입니다.");
+
+        tx.update(ref, {
+          status: "reserved",
+          reservedBy: uid,
+          reservedAt: serverTimestamp()
+        });
+      });
+    }
+
+    // UI 렌더
+    function render(list, uid) {
+      const reserved = list.filter(x => x.status === "reserved").length;
+      statsEl.textContent = `Available ${list.length - reserved} / Reserved ${reserved}`;
+
+      rowsEl.innerHTML = "";
+      for (const a of list) {
+        const tr = document.createElement("tr");
+        if (a.status === "reserved") tr.classList.add("reserved");
+
+        const idTd = document.createElement("td");
+        idTd.textContent = a.id;
+
+        const emailTd = document.createElement("td");
+        emailTd.textContent = a.email;
+
+        const statusTd = document.createElement("td");
+        statusTd.textContent = a.status === "available" ? "available" : `reserved (${a.reservedBy ?? "?"})`;
+
+        const actionTd = document.createElement("td");
+        const btn = document.createElement("button");
+
+        const isReserved = a.status === "reserved";
+        btn.textContent = isReserved ? "Reserved" : "Reserve (체크)";
+        btn.disabled = isReserved;
+
+        btn.onclick = async () => {
+          btn.disabled = true;
+          try {
+            await reserveAccount(a.id, uid);
+          } catch (e) {
+            alert(e.message || String(e));
+            btn.disabled = false;
+          }
+        };
+
+        actionTd.appendChild(btn);
+
+        tr.appendChild(idTd);
+        tr.appendChild(emailTd);
+        tr.appendChild(statusTd);
+        tr.appendChild(actionTd);
+
+        rowsEl.appendChild(tr);
+      }
+    }
+
+    // 익명 로그인 후 실시간 구독
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        await signInAnonymously(auth);
+        return;
+      }
+
+      meEl.textContent = `UID: ${user.uid.slice(0, 8)}… (익명)`;
+
+      const q = query(collection(db, "accounts"), orderBy("id"));
+      onSnapshot(q, (snap) => {
+        const list = snap.docs.map(d => ({ ...d.data() }));
+        render(list, user.uid);
+      });
+    });
+  </script>
+</body>
+</html>
