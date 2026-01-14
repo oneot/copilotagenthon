@@ -15,10 +15,11 @@
     button[disabled] { cursor: not-allowed; opacity: 0.6; }
     .muted { color:#666; font-size: 13px; }
     .id { width:60px; }
-    .pw { width:120px; }
-    .name { width:160px; }
-    .copyBtn { margin-left: 8px; padding: 4px 8px; font-size: 12px; }
-    .nameInput { padding: 6px 8px; width: 140px; }
+    .pw { width:150px; }
+    .name { width:180px; }
+    .copyBtn { margin-left: 6px; padding: 4px 8px; font-size: 12px; }
+    .nameInput { padding: 6px 8px; width: 150px; }
+    .emailWrap { display:flex; align-items:center; gap:6px; }
   </style>
 </head>
 <body>
@@ -27,7 +28,9 @@
   <div class="top">
     <div class="badge" id="me">로그인 중...</div>
     <div class="badge" id="stats">로딩 중...</div>
-    <span class="muted">Reserve 시 이름 입력 필수(모두에게 표시). 체크(Reserve)하는 순간 모두에게 즉시 반영됩니다.</span>
+    <span class="muted">
+      Reserve 시 이름 입력 필수(모두에게 표시). 체크 즉시 실시간 반영됩니다.
+    </span>
   </div>
 
   <table>
@@ -36,7 +39,7 @@
         <th class="id">ID</th>
         <th>Email</th>
         <th class="pw">PW</th>
-        <th class="name">이름(Reserve 시 필수)</th>
+        <th class="name">이름 (Reserve 필수)</th>
         <th>Status</th>
         <th>Action</th>
       </tr>
@@ -60,7 +63,6 @@
       appId: "1:729059899668:web:f18eee7aa1ee6d15ae6a01"
     };
 
-    // 모든 데모 계정 공통 비밀번호
     const DEMO_PASSWORD = "Elevate!";
 
     const app = initializeApp(firebaseConfig);
@@ -72,135 +74,124 @@
     const rowsEl = document.getElementById("rows");
 
     function pad2(n){ return String(n).padStart(2,'0'); }
+    function normalizeName(v){ return (v ?? "").trim().replace(/\s+/g, " "); }
 
-    function normalizeName(raw) {
-      return (raw ?? "").trim().replace(/\s+/g, " ");
-    }
-
-    async function copyToClipboard(text) {
+    async function copy(text, btn){
       try {
         await navigator.clipboard.writeText(text);
-        return true;
+        const prev = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = prev, 800);
       } catch {
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        const ok = document.execCommand("copy");
-        document.body.removeChild(ta);
-        return ok;
+        alert("복사 실패");
       }
     }
 
-    // ✅ 이름 입력 필수 + 원자적 예약 (동시성 안전)
-    async function reserveAccount(accountId, uid, reservedName) {
+    async function reserveAccount(accountId, uid, name) {
       const ref = doc(db, "accounts", pad2(accountId));
 
       await runTransaction(db, async (tx) => {
         const snap = await tx.get(ref);
         if (!snap.exists()) throw new Error("계정이 존재하지 않습니다.");
-
         const data = snap.data();
-        if (data.status !== "available") throw new Error("이미 선택된 계정입니다.");
 
-        const name = normalizeName(reservedName);
-        if (!name) throw new Error("이름을 입력해야 Reserve 할 수 있습니다.");
+        if (data.status !== "available") throw new Error("이미 선택된 계정입니다.");
+        if (!name) throw new Error("이름을 입력해야 합니다.");
 
         tx.update(ref, {
           status: "reserved",
           reservedBy: uid,
-          reservedName: name,         // ✅ 모두에게 보여줄 이름
+          reservedName: name,
           reservedAt: serverTimestamp()
         });
       });
     }
 
     function render(list, uid) {
-      const reserved = list.filter(x => x.status === "reserved").length;
+      const reserved = list.filter(a => a.status === "reserved").length;
       statsEl.textContent = `Available ${list.length - reserved} / Reserved ${reserved}`;
-
       rowsEl.innerHTML = "";
+
       for (const a of list) {
         const tr = document.createElement("tr");
         if (a.status === "reserved") tr.classList.add("reserved");
 
-        const idTd = document.createElement("td");
-        idTd.textContent = a.id;
+        // ID
+        tr.innerHTML += `<td>${a.id}</td>`;
 
+        // Email + Copy
         const emailTd = document.createElement("td");
-        emailTd.textContent = a.email;
+        const emailWrap = document.createElement("div");
+        emailWrap.className = "emailWrap";
 
-        // PW 컬럼 (공통 비밀번호 표기 + 복사 버튼)
+        const emailSpan = document.createElement("span");
+        emailSpan.textContent = a.email;
+
+        const emailCopyBtn = document.createElement("button");
+        emailCopyBtn.className = "copyBtn";
+        emailCopyBtn.textContent = "Copy";
+        emailCopyBtn.onclick = () => copy(a.email, emailCopyBtn);
+
+        emailWrap.append(emailSpan, emailCopyBtn);
+        emailTd.appendChild(emailWrap);
+        tr.appendChild(emailTd);
+
+        // PW + Copy (ID+PW)
         const pwTd = document.createElement("td");
         pwTd.textContent = DEMO_PASSWORD;
 
-        const copyBtn = document.createElement("button");
-        copyBtn.className = "copyBtn";
-        copyBtn.type = "button";
-        copyBtn.textContent = "Copy";
-        copyBtn.onclick = async () => {
-          const ok = await copyToClipboard(`ID: ${a.email}\nPW: ${DEMO_PASSWORD}`);
-          copyBtn.textContent = ok ? "Copied!" : "Copy failed";
-          setTimeout(() => (copyBtn.textContent = "Copy"), 900);
-        };
-        pwTd.appendChild(copyBtn);
+        const pwCopyBtn = document.createElement("button");
+        pwCopyBtn.className = "copyBtn";
+        pwCopyBtn.textContent = "Copy";
+        pwCopyBtn.onclick = () =>
+          copy(`ID: ${a.email}\nPW: ${DEMO_PASSWORD}`, pwCopyBtn);
 
-        // 이름 컬럼: reserved면 이름 표시, available이면 입력창 제공
+        pwTd.appendChild(pwCopyBtn);
+        tr.appendChild(pwTd);
+
+        // Name
         const nameTd = document.createElement("td");
         if (a.status === "reserved") {
-          nameTd.textContent = a.reservedName ? a.reservedName : "(이름 미기록)";
+          nameTd.textContent = a.reservedName || "(이름 없음)";
         } else {
           const input = document.createElement("input");
           input.className = "nameInput";
-          input.type = "text";
           input.placeholder = "이름 입력";
-          // 동일 row에서 버튼 눌렀을 때 읽기 위해 data 속성으로 저장
-          input.setAttribute("data-id", String(a.id));
+          input.dataset.id = a.id;
           nameTd.appendChild(input);
         }
+        tr.appendChild(nameTd);
 
+        // Status
         const statusTd = document.createElement("td");
-        if (a.status === "available") {
-          statusTd.textContent = "available";
-        } else {
-          const who = a.reservedName ? `${a.reservedName}` : (a.reservedBy ?? "?");
-          statusTd.textContent = `reserved (${who})`;
-        }
+        statusTd.textContent =
+          a.status === "available"
+            ? "available"
+            : `reserved (${a.reservedName})`;
+        tr.appendChild(statusTd);
 
+        // Action
         const actionTd = document.createElement("td");
         const btn = document.createElement("button");
 
-        const isReserved = a.status === "reserved";
-        btn.textContent = isReserved ? "Reserved" : "Reserve (체크)";
-        btn.disabled = isReserved;
+        btn.textContent = a.status === "reserved" ? "Reserved" : "Reserve (체크)";
+        btn.disabled = a.status === "reserved";
 
         btn.onclick = async () => {
-          // available일 때만 입력창에서 이름 읽기
-          const input = rowsEl.querySelector(`input.nameInput[data-id="${a.id}"]`);
-          const name = normalizeName(input ? input.value : "");
-
-          if (!name) {
-            alert("이름을 입력해야 Reserve 할 수 있습니다.");
-            if (input) input.focus();
-            return;
-          }
+          const input = rowsEl.querySelector(`input[data-id="${a.id}"]`);
+          const name = normalizeName(input?.value);
+          if (!name) return alert("이름을 입력하세요.");
 
           btn.disabled = true;
           try {
             await reserveAccount(a.id, uid, name);
           } catch (e) {
-            alert(e.message || String(e));
+            alert(e.message);
             btn.disabled = false;
           }
         };
 
         actionTd.appendChild(btn);
-
-        tr.appendChild(idTd);
-        tr.appendChild(emailTd);
-        tr.appendChild(pwTd);
-        tr.appendChild(nameTd);
-        tr.appendChild(statusTd);
         tr.appendChild(actionTd);
 
         rowsEl.appendChild(tr);
@@ -208,17 +199,12 @@
     }
 
     onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        await signInAnonymously(auth);
-        return;
-      }
-
-      meEl.textContent = `UID: ${user.uid.slice(0, 8)}… (익명)`;
+      if (!user) return signInAnonymously(auth);
+      meEl.textContent = `UID: ${user.uid.slice(0,8)}… (익명)`;
 
       const q = query(collection(db, "accounts"), orderBy("id"));
-      onSnapshot(q, (snap) => {
-        const list = snap.docs.map(d => ({ ...d.data() }));
-        render(list, user.uid);
+      onSnapshot(q, snap => {
+        render(snap.docs.map(d => d.data()), user.uid);
       });
     });
   </script>
