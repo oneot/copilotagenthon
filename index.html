@@ -144,7 +144,7 @@
         pwCopyBtn.className = "copyBtn";
         pwCopyBtn.textContent = "Copy";
         pwCopyBtn.onclick = () =>
-          copy(`ID: ${a.email}\nPW: ${DEMO_PASSWORD}`, pwCopyBtn);
+          copy(DEMO_PASSWORD, pwCopyBtn);
 
         pwTd.appendChild(pwCopyBtn);
         tr.appendChild(pwTd);
