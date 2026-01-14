@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Seed Accounts</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 24px; }
+    button { padding: 10px 14px; cursor: pointer; }
+    pre { background: #f6f8fa; padding: 12px; border-radius: 8px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <h1>🌱 Demo 계정 50개 시드</h1>
+  <p>아래 버튼은 <b>딱 한 번만</b> 누르세요. 완료되면 이 페이지(seed.html)는 삭제/비활성화 권장.</p>
+
+  <button id="seed">🔥 Seed 50 Accounts</button>
+  <button id="verify" style="margin-left:8px;">🔎 Verify (몇 개 있는지 확인)</button>
+
+  <h3>로그</h3>
+  <pre id="log">대기 중...</pre>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import {
+      getFirestore, doc, setDoc, collection, getDocs, query, orderBy
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    // ✅ index.html에서 사용한 config와 동일하게 넣기
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtMRjuzCGDsn-IFpUzjD0s86Ey--ARk",
+      authDomain: "accounts-b74f0.firebaseapp.com",
+      projectId: "accounts-b74f0",
+      storageBucket: "accounts-b74f0.appspot.com",
+      messagingSenderId: "729059899668",
+      appId: "1:729059899668:web:f18eee7aa1ee6d15ae6a01"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const logEl = document.getElementById("log");
+    const seedBtn = document.getElementById("seed");
+    const verifyBtn = document.getElementById("verify");
+
+    function pad2(n){ return String(n).padStart(2,'0'); }
+    function log(line){ logEl.textContent += `\n${line}`; }
+
+    seedBtn.onclick = async () => {
+      seedBtn.disabled = true;
+      logEl.textContent = "로그인(익명) 중...";
+      try {
+        await signInAnonymously(auth);
+        log("✅ 익명 로그인 완료");
+
+        log("🚀 accounts/01 ~ accounts/50 생성 시작...");
+
+        // ⚠️ 비밀번호 저장은 비추천. 정말 넣고 싶으면 password 필드 주석 해제.
+        for (let i = 1; i <= 50; i++) {
+          const id2 = pad2(i);
+          await setDoc(doc(db, "accounts", id2), {
+            id: i,
+            email: `demo${id2}@miee.dev`,
+            // password: "Elevate!",
+            status: "available",
+            reservedBy: null,
+            reservedAt: null
+          }, { merge: true });
+
+          log(`✅ created/updated: accounts/${id2}`);
+        }
+
+        log("🎉 완료! Firestore에 50개 계정이 준비되었습니다.");
+        log("👉 이제 index.html 페이지로 가서 실시간 체크 테스트 하세요.");
+        log("⚠️ 보안상 seed.html은 바로 삭제/비활성화 권장!");
+      } catch (e) {
+        log(`❌ 오류: ${e.message || String(e)}`);
+        seedBtn.disabled = false;
+      }
+    };
+
+    verifyBtn.onclick = async () => {
+      verifyBtn.disabled = true;
+      logEl.textContent = "검증(Verify) 중...";
+      try {
+        await signInAnonymously(auth);
+        const q = query(collection(db, "accounts"), orderBy("id"));
+        const snap = await getDocs(q);
+        log(`✅ accounts 문서 수: ${snap.size}`);
+        if (snap.size > 0) {
+          const first = snap.docs[0].data();
+          const last = snap.docs[snap.docs.length - 1].data();
+          log(`첫 문서 예: id=${first.id}, email=${first.email}, status=${first.status}`);
+          log(`마지막 문서 예: id=${last.id}, email=${last.email}, status=${last.status}`);
+        }
+        log("검증 완료");
+      } catch (e) {
+        log(`❌ 오류: ${e.message || String(e)}`);
+      } finally {
+        verifyBtn.disabled = false;
+      }
+    };
+  </script>
+</body>
+</html>
