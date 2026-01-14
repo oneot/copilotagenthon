@@ -7,6 +7,7 @@
   <style>
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 24px; }
     button { padding: 10px 14px; cursor: pointer; }
+    button[disabled] { cursor: not-allowed; opacity: 0.6; }
     pre { background: #f6f8fa; padding: 12px; border-radius: 8px; overflow:auto; }
   </style>
 </head>
@@ -16,6 +17,7 @@
 
   <button id="seed">🔥 Seed 50 Accounts</button>
   <button id="verify" style="margin-left:8px;">🔎 Verify (몇 개 있는지 확인)</button>
+  <button id="reset" style="margin-left:8px;">♻️ Reset Reserved (전체 초기화)</button>
 
   <h3>로그</h3>
   <pre id="log">대기 중...</pre>
@@ -24,7 +26,14 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
     import {
-      getFirestore, doc, setDoc, collection, getDocs, query, orderBy
+      getFirestore,
+      doc,
+      setDoc,
+      collection,
+      getDocs,
+      query,
+      orderBy,
+      updateDoc
     } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
     // ✅ index.html에서 사용한 config와 동일하게 넣기
@@ -44,15 +53,23 @@
     const logEl = document.getElementById("log");
     const seedBtn = document.getElementById("seed");
     const verifyBtn = document.getElementById("verify");
+    const resetBtn = document.getElementById("reset");
 
     function pad2(n){ return String(n).padStart(2,'0'); }
     function log(line){ logEl.textContent += `\n${line}`; }
 
+    async function ensureAnonLogin() {
+      await signInAnonymously(auth);
+    }
+
     seedBtn.onclick = async () => {
       seedBtn.disabled = true;
+      verifyBtn.disabled = true;
+      resetBtn.disabled = true;
+
       logEl.textContent = "로그인(익명) 중...";
       try {
-        await signInAnonymously(auth);
+        await ensureAnonLogin();
         log("✅ 익명 로그인 완료");
 
         log("🚀 accounts/01 ~ accounts/50 생성 시작...");
@@ -77,18 +94,27 @@
         log("⚠️ 보안상 seed.html은 바로 삭제/비활성화 권장!");
       } catch (e) {
         log(`❌ 오류: ${e.message || String(e)}`);
+      } finally {
         seedBtn.disabled = false;
+        verifyBtn.disabled = false;
+        resetBtn.disabled = false;
       }
     };
 
     verifyBtn.onclick = async () => {
+      seedBtn.disabled = true;
       verifyBtn.disabled = true;
+      resetBtn.disabled = true;
+
       logEl.textContent = "검증(Verify) 중...";
       try {
-        await signInAnonymously(auth);
+        await ensureAnonLogin();
+
         const q = query(collection(db, "accounts"), orderBy("id"));
         const snap = await getDocs(q);
+
         log(`✅ accounts 문서 수: ${snap.size}`);
+
         if (snap.size > 0) {
           const first = snap.docs[0].data();
           const last = snap.docs[snap.docs.length - 1].data();
@@ -99,7 +125,52 @@
       } catch (e) {
         log(`❌ 오류: ${e.message || String(e)}`);
       } finally {
+        seedBtn.disabled = false;
         verifyBtn.disabled = false;
+        resetBtn.disabled = false;
+      }
+    };
+
+    // ✅ Reset: reserved → available 로 전체 초기화
+    resetBtn.onclick = async () => {
+      const ok = confirm("⚠️ 모든 Reserved 계정을 Available로 초기화할까요?\n(ReservedBy/ReservedAt도 모두 삭제됩니다.)");
+      if (!ok) return;
+
+      seedBtn.disabled = true;
+      verifyBtn.disabled = true;
+      resetBtn.disabled = true;
+
+      logEl.textContent = "초기화(Reset) 중...";
+      try {
+        await ensureAnonLogin();
+        log("✅ 익명 로그인 완료");
+
+        const q = query(collection(db, "accounts"), orderBy("id"));
+        const snap = await getDocs(q);
+
+        let changed = 0;
+
+        for (const d of snap.docs) {
+          const data = d.data();
+          if (data.status === "reserved") {
+            await updateDoc(doc(db, "accounts", d.id), {
+              status: "available",
+              reservedBy: null,
+              reservedAt: null
+            });
+            changed++;
+            log(`♻️ reset: accounts/${d.id}`);
+          }
+        }
+
+        log(`🎉 초기화 완료! reserved → available: ${changed}개`);
+        log("👉 index.html 페이지도 실시간으로 바로 반영됩니다.");
+      } catch (e) {
+        log(`❌ 오류: ${e.message || String(e)}`);
+      } finally {
+        seedBtn.disabled = false;
+        verifyBtn.disabled = false;
+        resetBtn.disabled = false;
       }
     };
   </script>
