@@ -8,6 +8,9 @@
 
 ## 0) 먼저, 코파일럿에게 “학교알리미 API가 뭐예요?” 물어보기
 
+<img width="451" height="306" alt="image" src="https://github.com/user-attachments/assets/53a1204a-99c8-4228-851a-cb62756de5e4" />
+
+
 코파일럿에게 아래처럼 질문해보면 보통 이런 설명이 나옵니다.
 ```markdown
 ### 🏫 학교알리미란?
@@ -85,9 +88,15 @@ API는 **Application Programming Interface**의 약자로,
 
 ## 5) 시작해볼까요? (학교알리미 사이트 접속)
 
-먼저 아래 주소로 접속해 주세요.
+먼저 아래 주소로 접속한 후 가입과 로그인까지 해봅시다.
 
 👉 https://www.schoolinfo.go.kr/ng/go/pnnggo_a01_l0.do
+
+<img width="451" height="306" alt="image" src="https://github.com/user-attachments/assets/773af1ce-c356-408d-805c-8531d97f0200" />
+
+<img width="451" height="306" alt="image" src="https://github.com/user-attachments/assets/ec3bc57a-8019-4d7d-af32-b8099467a420" />
+
+
 
 ---
 
@@ -106,6 +115,9 @@ API는 **Application Programming Interface**의 약자로,
 **API 제공 목록 → 학사/학생 → 학교기본정보**로 들어가 보면  
 “요청 인자”라는 항목이 보일 거예요.
 
+<img width="451" height="306" alt="image" src="https://github.com/user-attachments/assets/38202e41-9216-4ce6-a156-823904a93497" />
+
+
 대표 요청 인자는 이런 것들이 있어요:
 - `apiKey` : 인증키
 - `apiType` : API 종류(무슨 데이터를 가져올지)
@@ -114,9 +126,17 @@ API는 **Application Programming Interface**의 약자로,
 - `sggCode` : 시·군·구 코드
 - `schulKndCode` : 학교급 코드
 
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/f470c53c-7e2f-4f9f-a333-77f2d654b5e2" />
+
+
 ---
 
 ## 8) 시도·시군구 코드 파일도 받아볼까요?
+
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/413c4c40-3536-499f-9cc1-6fe3c0519229" />
+
 
 `시도시군고코드.xlsx`를 저장해서 열어보면,  
 지역 이름과 코드가 연결되어 있는 걸 확인할 수 있어요.
@@ -132,7 +152,6 @@ API는 **Application Programming Interface**의 약자로,
 ```markdown
 https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&apiType=22&pbanYr=2025&sidoCode=11&sggCode=11680&schulKndCode=02
 ```
-
 ### 🔎 이 URL이 의미하는 것
 - `apiKey` : 내가 발급받은 개인 인증키
 - `apiType` : 가져올 데이터 종류
@@ -140,6 +159,10 @@ https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&
 - `sidoCode` : 시도 코드
 - `sggCode` : 시군구 코드
 - `schulKndCode` : 학교급 코드
+
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/a1e0f3c7-d40f-4e78-8926-ae3c95b60061" />
+
 
 👉 이렇게 “이 조건의 데이터를 주세요!”라고 API에 요청하면  
 👉 그 조건에 맞는 데이터가 응답으로 내려오는 방식입니다 😊
@@ -152,10 +175,18 @@ Copilot Studio로 이동합니다.
 
 👉 https://copilotstudio.microsoft.com
 
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/18f39169-d1e5-43d4-bbd3-f247b63cf3e7" />
+
 1) **빈 에이전트 만들기**를 선택하고 시작해 주세요.  
-2) 에이전트 이름도 바꾸고, 아이콘도 예쁘게 넣어주면 좋아요 😊  
+2) 에이전트 이름도 바꾸고, 아이콘도 예쁘게 넣어주면 좋아요 😊
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/9ce55572-e0a7-43de-9c8c-b4efc4a0e71f" />
+
 3) 파운데이션 모델도 변경해볼까요?  
-   - Agentic AI 사고에 적합한 **Claude Opus 4.5**를 선택합니다.  
+   - Agentic AI 사고에 적합한 **Claude Opus 4.5**를 선택합니다.
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/a6999c5f-173a-4036-b35f-e6f962aadfdc" />
+
 4) **지침 편집**을 눌러 아래 내용을 그대로 붙여넣고 저장합니다.
 
 ```markdown
@@ -348,6 +379,9 @@ Copilot Studio로 이동합니다.
 이 에이전트는 교육청, 학교, 학부모 누구에게나  
 신뢰 가능한 공식 학교 정보 안내 에이전트로 인식되어야 한다.
 ```
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/b5acd336-f0b5-4bad-b007-5d18a7029348" />
+
 ---
 
 ## 11) 참고 자료(파일) 추가하기
@@ -355,21 +389,36 @@ Copilot Studio로 이동합니다.
 이제 아까 다운받은 `sidoCode_sggCode.csv` 파일을  
 에이전트의 **참조 자료(Reference)**로 추가해 주세요.
 
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/da752c94-11a1-413d-abd6-23fc3fb2ab49" />
+
+
 ---
 
 ## 12) 사용자 지정 커넥터 만들기 (Power Apps)
 
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/a832920f-edb0-487d-8157-50cce932456d" />
+
+
 이제 **도구 추가 → 사용자 지정 커넥터(Custom Connector)**를 선택하면  
 Power Apps 페이지로 이동합니다.
 
-1) **새 사용자 지정 커넥터 → 처음부터 만들기**를 선택합니다.  
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/52164c5a-bce8-4949-add2-e16c38a65729" />
+
+1) **새 사용자 지정 커넥터 → 처음부터 만들기**를 선택합니다.
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/b346b6bc-5710-4c7a-8fd3-150f006398ba" />
+
 2) 커넥터 이름을 간단하게 입력합니다.  
 3) **Host**에는 아래를 입력합니다.
 - `schoolinfo.go.kr`
 
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/e0729ae4-acc2-4345-9e9a-0c03476f8952" />
+
 ---
 
 ## 13) 인증 방식 설정 (API Key)
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/8eb10270-f31a-44fe-9e3f-8131850889d9" />
 
 인증 설정에서 아래처럼 선택해 주세요.
 - 인증 방식: **API 키**
@@ -381,6 +430,8 @@ Power Apps 페이지로 이동합니다.
 
 ## 14) 동작(Action) 만들기
 
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/a8ca09dc-2ccc-4507-a0c0-e10bce65f6df" />
+
 1) **새 동작(New Action)**을 선택합니다.  
 2) 동사(Verb)는 **GET**을 선택합니다.  
 3) “샘플에서 가져오기(Import from sample)”를 선택합니다.  
@@ -388,11 +439,19 @@ Power Apps 페이지로 이동합니다.
 ```markdown
 https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&apiType=27&pbanYr=2025&sidoCode=11&sggCode=11680&schulKndCode=04&depthNo=10&depthNo2=1
 ```
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/a5c8e6a5-f590-4302-bf98-b9115c3ee1fa" />
+
 👉 쿼리가 자동 생성되는 것을 확인하실 수 있어요.
+
+<img width="523" height="350" alt="image" src="https://github.com/user-attachments/assets/c9bea6e9-8a0f-4169-b220-ce56c31b7e15" />
+
 
 ---
 
 ## 15) 쿼리(Query) 표시 옵션 설정
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/1b171e99-2788-4211-a8df-7b8cca9cf035" />
 
 생성된 쿼리들을 **편집(Edit)**으로 들어가서,
 - 표시 여부: **Important**
@@ -403,14 +462,24 @@ https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&
 
 ## 16) Response(응답) 샘플도 넣어주기
 
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/7766d344-0e3d-4505-8a42-a431d6062204" />
+
 Response의 **Default → 샘플에서 가져오기**를 선택한 후,  
 아래 URL을 브라우저에서 열어 나온 결과값을 **전체 복사**해서 붙여넣고 가져오기를 누릅니다.
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/af3c835b-6f29-4dcd-88e8-e1dc6b22f5d3" />
+
 ```markdown
 https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&apiType=22&pbanYr=2025&sidoCode=11&sggCode=11680&schulKndCode=02
 ```
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/0b9138b2-f359-44a5-8be9-766ab01c1dee" />
+
 ---
 
 ## 17) 커넥터 만들기 & 테스트
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/0ae99358-9613-48d8-ac07-8fd892d5c64c" />
 
 1) 우측 상단 **커넥터 만들기(Create connector)**를 클릭합니다.  
 2) 생성 완료 후 테스트를 진행해볼까요?
@@ -418,6 +487,11 @@ https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&
 - **새 연결(New connection)**을 선택  
 - 본인의 `apiKey`를 입력  
 - 만들기(Create) 클릭
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/ad01d799-dda6-4b74-9bfc-81f26a55d67a" />
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/14797fa0-0fdf-4540-8551-fd2d8ba14d48" />
+
 
 👉 잘 연결되면 성공입니다! 🎉
 
@@ -427,14 +501,31 @@ https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&
 
 Copilot Studio로 돌아와서
 
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/d74fe0b9-930b-48f6-82d4-55013daecffa" />
+
 1) 도구 추가에서 `School` 등을 검색합니다.  
 2) 방금 만든 `SchoolinfoAPIConnector`를 선택합니다.  
-3) **추가 및 구성(Add and configure)**을 선택합니다.  
+3) **추가 및 구성(Add and configure)**을 선택합니다.
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/dbf7634b-a5df-43f5-9186-a75ce4fe3913" />
+
 4) “추가 세부 정보”에서 자격 증명을  
-   **작성자가 제공한 자격 증명**으로 변경합니다.  
-5) **입력 추가(Add inputs)**를 눌러 목록의 쿼리를 모두 추가합니다.  
-6) `apiKey`는 **사용자 지정 값**으로 바꾸고 본인 키를 넣습니다.  
+   **작성자가 제공한 자격 증명**으로 변경합니다.
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/91d0eaa0-5b68-462b-9f63-4496ab626fd7" />
+
+5) **입력 추가(Add inputs)**를 눌러 목록의 쿼리를 모두 추가합니다.
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/6ca81d46-f591-4441-bd70-38be54be23d6" />
+
+6) `apiKey`는 **사용자 지정 값**으로 바꾸고 본인 키를 넣습니다.
+
+<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/f352f9d3-83d4-455d-8df7-16ffc2fc2ef9" />
+
 7) 상단 **저장(Save)**을 누릅니다.
+
+<img width="523" height="350" alt="image" src="https://github.com/user-attachments/assets/5c111efe-c2e1-4db1-9af1-227179407d71" />
+
 
 ---
 
@@ -442,10 +533,22 @@ Copilot Studio로 돌아와서
 
 우측 상단 **에이전트 테스트 옆 + 버튼**을 클릭해서 테스트를 시작합니다.
 
-예시 프롬프트:
-- 서울시 강남구 기준, 대상별 학교폭력 예방교육 실적 가장 좋은 고등학교 Top10 알려줘.
-- 서울시 강남구 입학생 가장 많은 고등학교 Top10 알려줘
-- 서울시 강남구 성별 학생 수 알려줘
-- 서울시 강남구 전·출입 및 학업중단 학생 수 가장 많은 학교 Top10 알려줘
+<img width="523" height="350" alt="image" src="https://github.com/user-attachments/assets/79b8dd0b-92ce-43ad-a35e-0687497dd192" />
 
-✅ 잠시 생각한 뒤, 조건에 맞는 인사이트를 잘 가져오면 연결 성공입니다!
+
+예시 프롬프트:
+```markdown
+- 서울시 강남구 기준, 대상별 학교폭력 예방교육 실적 가장 좋은 고등학교 Top10 알려줘.
+```
+
+```markdown
+- 서울시 강남구 입학생 가장 많은 고등학교 Top10 알려줘
+```
+
+```markdown
+- 서울시 강남구 성별 학생 수 알려줘
+```
+
+```markdown
+- 서울시 강남구 전·출입 및 학업중단 학생 수 가장 많은 학교 Top10 알려줘
+```
