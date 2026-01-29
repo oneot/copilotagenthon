@@ -9,7 +9,7 @@
 ## 0) 먼저, 코파일럿에게 “학교알리미 API가 뭐예요?” 물어보기
 
 코파일럿에게 아래처럼 질문해보면 보통 이런 설명이 나옵니다.
-
+```markdown
 ### 🏫 학교알리미란?
 학교알리미는 교육부에서 운영하는 **공식 사이트**로,  
 각 학교가 의무적으로 공개해야 하는 정보를 모아 놓은 곳이에요.
@@ -80,7 +80,7 @@ API는 **Application Programming Interface**의 약자로,
 보통은
 - **공공데이터포털(data.go.kr)** 또는 학교알리미 사이트에서
 - **API 키(apiKey)**를 발급받아 사용합니다.
-
+```
 ---
 
 ## 5) 시작해볼까요? (학교알리미 사이트 접속)
@@ -94,8 +94,9 @@ API는 **Application Programming Interface**의 약자로,
 ## 6) 인증키(API Key)를 저장해두기
 
 인증키는 아주 중요하니 메모장이나 안전한 곳에 저장해 주세요.
-
+```markdown
 예시) ad42426604854c398f68eb7359aeafee
+```
 
 ---
 
@@ -128,7 +129,9 @@ API는 **Application Programming Interface**의 약자로,
 ## 9) API를 직접 테스트해볼게요 (브라우저에서!)
 
 이제 아래 URL을 **그대로 복사해서 브라우저에 붙여넣어** 열어보세요.
+```markdown
 https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&apiType=22&pbanYr=2025&sidoCode=11&sggCode=11680&schulKndCode=02
+```
 
 ### 🔎 이 URL이 의미하는 것
 - `apiKey` : 내가 발급받은 개인 인증키
@@ -155,9 +158,8 @@ Copilot Studio로 이동합니다.
    - Agentic AI 사고에 적합한 **Claude Opus 4.5**를 선택합니다.  
 4) **지침 편집**을 눌러 아래 내용을 그대로 붙여넣고 저장합니다.
 
----
-
-# 📘 학교 알리미 에이전트 지침 (School Alimi Agent Instructions) – 완성본
+```markdown
+# 📘 학교 알리미 에이전트 지침
 
 ## 1. 에이전트의 역할과 목적
 이 에이전트는 학교알리미 OPEN API를 Custom Connector로 호출하여  
@@ -345,7 +347,7 @@ Copilot Studio로 이동합니다.
 ## 9. 지침의 목표
 이 에이전트는 교육청, 학교, 학부모 누구에게나  
 신뢰 가능한 공식 학교 정보 안내 에이전트로 인식되어야 한다.
-
+```
 ---
 
 ## 11) 참고 자료(파일) 추가하기
@@ -383,8 +385,9 @@ Power Apps 페이지로 이동합니다.
 2) 동사(Verb)는 **GET**을 선택합니다.  
 3) “샘플에서 가져오기(Import from sample)”를 선택합니다.  
 4) 아래 URL을 넣고 가져오기를 누릅니다.
+```markdown
 https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&apiType=27&pbanYr=2025&sidoCode=11&sggCode=11680&schulKndCode=04&depthNo=10&depthNo2=1
-
+```
 👉 쿼리가 자동 생성되는 것을 확인하실 수 있어요.
 
 ---
@@ -402,8 +405,9 @@ https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&
 
 Response의 **Default → 샘플에서 가져오기**를 선택한 후,  
 아래 URL을 브라우저에서 열어 나온 결과값을 **전체 복사**해서 붙여넣고 가져오기를 누릅니다.
+```markdown
 https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&apiType=22&pbanYr=2025&sidoCode=11&sggCode=11680&schulKndCode=02
-
+```
 ---
 
 ## 17) 커넥터 만들기 & 테스트
