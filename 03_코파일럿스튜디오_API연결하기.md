@@ -543,20 +543,17 @@ Copilot Studio로 돌아와서,
    ### 🔹 ① 기상청 단기예보(OpenAPI)
    - **설명**: 시·군·구 단위의 단기 날씨 예보 제공  
    - **활용 예**: 등하교 안전 알림, 체육수업·현장학습 일정 판단  
-   - **API 링크**:  
-     https://www.data.go.kr/data/15084084/openapi.do
+   - **API 링크**: https://www.data.go.kr/data/15084084/openapi.do
 
    ### 🔹 ② 특일정보 API (공휴일·절기·기념일)
    - **설명**: 연도별 공휴일, 절기, 기념일 정보 제공  
    - **활용 예**: 학사 캘린더 자동 생성, 가정통신문 일정 안내  
-   - **API 링크**:  
-     https://www.data.go.kr/dataset/15012690/openapi.do
+   - **API 링크**: https://www.data.go.kr/dataset/15012690/openapi.do
 
    ### 🔹 ③ 국립중앙도서관 Open API
    - **설명**: 도서, 논문 등 국가자료 검색 및 서지 정보 제공  
    - **활용 예**: 독서교육 추천 도서 안내, 수업 참고 자료 탐색  
-   - **API 링크**:  
-     https://www.nl.go.kr/NL/contents/N31101010000.do
+   - **API 링크**: https://www.nl.go.kr/NL/contents/N31101010000.do
 
 3. **🤖 이제 직접 만들어볼 차례입니다.**  
    작은 아이디어 하나를 선택해 에이전트로 구현해보고,  
