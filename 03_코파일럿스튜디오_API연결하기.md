@@ -1,15 +1,14 @@
 # 🤖 Copilot Studio에서 커스텀 커넥터로 ‘학교알리미 API’ 연결하기 🔥
 
 안녕하세요! 😊  
-이번에는 **Copilot Studio의 Custom Connector(사용자 지정 커넥터)** 기능을 이용해서  
+이번에는 **Copilot Studio의 Custom Connector(사용자 지정 커넥터)** 기능을 이용해서
 **교육부 공식 사이트 ‘학교알리미’ OPEN API**를 에이전트에 연결해보겠습니다.
 
 ---
 
 ## 0) 먼저, 코파일럿에게 “학교알리미 API가 뭐예요?” 물어보기
 
-<img width="451" height="306" alt="image" src="https://github.com/user-attachments/assets/53a1204a-99c8-4228-851a-cb62756de5e4" />
-
+<img width="800" height="543" alt="1" src="https://github.com/user-attachments/assets/8bc16adf-6a18-498a-a758-b184e2766af2" />
 
 코파일럿에게 아래처럼 질문해보면 보통 이런 설명이 나옵니다.
 ```markdown
@@ -32,8 +31,7 @@
 
 ## 1) API가 뭐예요?
 
-API는 **Application Programming Interface**의 약자로,  
-“다른 프로그램이 데이터를 요청해서 받는 통로”라고 생각하시면 돼요.
+API는 **Application Programming Interface**의 약자로, “다른 프로그램이 데이터를 요청해서 받는 통로”라고 생각하시면 돼요.
 
 즉,
 - 웹사이트 → 사람이 직접 봄  
@@ -86,37 +84,32 @@ API는 **Application Programming Interface**의 약자로,
 ```
 ---
 
-## 5) 시작해볼까요? (학교알리미 사이트 접속)
+## 1) 시작해볼까요? (학교알리미 사이트 접속)
 
 먼저 아래 주소로 접속한 후 가입과 로그인까지 해봅시다.
 
 👉 https://www.schoolinfo.go.kr/ng/go/pnnggo_a01_l0.do
 
-<img width="451" height="306" alt="image" src="https://github.com/user-attachments/assets/773af1ce-c356-408d-805c-8531d97f0200" />
+<img width="809" height="549" alt="2" src="https://github.com/user-attachments/assets/df22dcd6-c7d7-48cb-a638-549439bc888f" />
 
-<img width="451" height="306" alt="image" src="https://github.com/user-attachments/assets/ec3bc57a-8019-4d7d-af32-b8099467a420" />
-
-
+<img width="796" height="540" alt="3" src="https://github.com/user-attachments/assets/5162a435-ae97-449f-89b2-64606e70c9be" />
 
 ---
 
-## 6) 인증키(API Key)를 저장해두기
+## 2) 인증키(API Key)를 저장해두기
 
 인증키는 아주 중요하니 메모장이나 안전한 곳에 저장해 주세요.
-```markdown
-예시) ad42426604854c398f68eb7359aeafee
-```
+
+ - 예시) ad42426604854c398f68eb7359aeafee
+
 
 ---
 
-## 7) 요청 인자(Parameter) 구조 이해하기
+## 3) 요청 인자(Parameter) 구조 이해하기
 
-이제 사이트에서  
-**API 제공 목록 → 학사/학생 → 학교기본정보**로 들어가 보면  
-“요청 인자”라는 항목이 보일 거예요.
+이제 사이트에서 **API 제공 목록 → 학사/학생 → 학교기본정보**로 들어가 보면 “요청 인자”라는 항목이 보일 거예요.
 
-<img width="451" height="306" alt="image" src="https://github.com/user-attachments/assets/38202e41-9216-4ce6-a156-823904a93497" />
-
+<img width="803" height="545" alt="4" src="https://github.com/user-attachments/assets/89d5006a-a803-4e3c-8c42-cdc94cae9f3e" />
 
 대표 요청 인자는 이런 것들이 있어요:
 - `apiKey` : 인증키
@@ -126,32 +119,23 @@ API는 **Application Programming Interface**의 약자로,
 - `sggCode` : 시·군·구 코드
 - `schulKndCode` : 학교급 코드
 
+---
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/f470c53c-7e2f-4f9f-a333-77f2d654b5e2" />
+## 4) 시도·시군구 코드 파일도 받아볼까요?
+<img width="802" height="531" alt="6" src="https://github.com/user-attachments/assets/c254d3ae-f884-4cc8-a0eb-268252478513" />
 
+`시도시군고코드.xlsx`를 저장해서 열어보면, 지역 이름과 코드가 연결되어 있는 걸 확인할 수 있어요.
+
+👉 이 코드들을 요청 인자로 넣으면 원하는 지역의 학교 데이터를 API로 받아올 수 있습니다.
 
 ---
 
-## 8) 시도·시군구 코드 파일도 받아볼까요?
+## 5) API를 직접 테스트해볼게요 (브라우저에서!)
 
-
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/413c4c40-3536-499f-9cc1-6fe3c0519229" />
-
-
-`시도시군고코드.xlsx`를 저장해서 열어보면,  
-지역 이름과 코드가 연결되어 있는 걸 확인할 수 있어요.
-
-👉 이 코드들을 요청 인자로 넣으면  
-원하는 지역의 학교 데이터를 API로 받아올 수 있습니다.
-
----
-
-## 9) API를 직접 테스트해볼게요 (브라우저에서!)
-
-이제 아래 URL을 **그대로 복사해서 브라우저에 붙여넣어** 열어보세요.
 ```markdown
 https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&apiType=22&pbanYr=2025&sidoCode=11&sggCode=11680&schulKndCode=02
 ```
+
 ### 🔎 이 URL이 의미하는 것
 - `apiKey` : 내가 발급받은 개인 인증키
 - `apiType` : 가져올 데이터 종류
@@ -160,8 +144,11 @@ https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&
 - `sggCode` : 시군구 코드
 - `schulKndCode` : 학교급 코드
 
+이제 아래 URL을 **그대로 복사해서 브라우저에 붙여넣어** 열어보세요.
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/a1e0f3c7-d40f-4e78-8926-ae3c95b60061" />
+<img width="800" height="543" alt="7" src="https://github.com/user-attachments/assets/15c9dd66-e1d4-428c-a963-43d17db25363" />
+
+- 뭔지는 모르겠지만 내가 요청한 요청인자들을 활용하여 데이터를 준 것 같습니다!
 
 
 👉 이렇게 “이 조건의 데이터를 주세요!”라고 API에 요청하면  
@@ -169,23 +156,21 @@ https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&
 
 ---
 
-## 10) 이제 Copilot Studio로 돌아가서 연결해볼게요!
+## 6) 이제 Copilot Studio로 돌아가서 연결해볼게요!
 
 Copilot Studio로 이동합니다.
 
 👉 https://copilotstudio.microsoft.com
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/18f39169-d1e5-43d4-bbd3-f247b63cf3e7" />
+<img width="804" height="546" alt="8" src="https://github.com/user-attachments/assets/02187bfe-0af2-47fa-a1b3-3f6be6bb3187" />
 
 1) **빈 에이전트 만들기**를 선택하고 시작해 주세요.  
 2) 에이전트 이름도 바꾸고, 아이콘도 예쁘게 넣어주면 좋아요 😊
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/9ce55572-e0a7-43de-9c8c-b4efc4a0e71f" />
+<img width="807" height="548" alt="9" src="https://github.com/user-attachments/assets/db612b46-4954-4140-9ff1-fea432c47d2c" />
 
 3) 파운데이션 모델도 변경해볼까요?  
    - Agentic AI 사고에 적합한 **Claude Opus 4.5**를 선택합니다.
-
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/a6999c5f-173a-4036-b35f-e6f962aadfdc" />
 
 4) **지침 편집**을 눌러 아래 내용을 그대로 붙여넣고 저장합니다.
 
@@ -376,49 +361,43 @@ Copilot Studio로 이동합니다.
 ---
 
 ## 9. 지침의 목표
-이 에이전트는 교육청, 학교, 학부모 누구에게나  
-신뢰 가능한 공식 학교 정보 안내 에이전트로 인식되어야 한다.
+이 에이전트는 교육청, 학교, 학부모 누구에게나 신뢰 가능한 공식 학교 정보 안내 에이전트로 인식되어야 한다.
 ```
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/b5acd336-f0b5-4bad-b007-5d18a7029348" />
+<img width="803" height="545" alt="10" src="https://github.com/user-attachments/assets/6acc349f-27fd-49ea-a9c8-be7983dac39a" />
 
 ---
 
-## 11) 참고 자료(파일) 추가하기
+## 7) 참고 자료(파일) 추가하기
 
-이제 아까 다운받은 `sidoCode_sggCode.csv` 파일을  
-에이전트의 **참조 자료(Reference)**로 추가해 주세요.
+이제 아까 다운받은 [sidoCode_sggCode.csv](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.schoolinfo.go.kr%2Fdownload%2Fsido_sggCode.xlsx&wdOrigin=BROWSELINK) 파일을 에이전트의 **참조 자료(Reference)**로 추가해 주세요.
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/da752c94-11a1-413d-abd6-23fc3fb2ab49" />
-
+<img width="770" height="503" alt="11" src="https://github.com/user-attachments/assets/6228fa57-bc20-4195-9563-63d7293e9244" />
 
 ---
 
-## 12) 사용자 지정 커넥터 만들기 (Power Apps)
+## 8) 사용자 지정 커넥터 만들기 (Power Apps)
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/a832920f-edb0-487d-8157-50cce932456d" />
+이제 **도구 추가 → 사용자 지정 커넥터(Custom Connector)**를 선택하면 Power Apps 페이지로 이동합니다.
 
-
-이제 **도구 추가 → 사용자 지정 커넥터(Custom Connector)**를 선택하면  
-Power Apps 페이지로 이동합니다.
-
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/52164c5a-bce8-4949-add2-e16c38a65729" />
+<img width="805" height="546" alt="12" src="https://github.com/user-attachments/assets/492f2a56-5c81-4fbd-afcf-0473f5bf8578" />
 
 1) **새 사용자 지정 커넥터 → 처음부터 만들기**를 선택합니다.
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/b346b6bc-5710-4c7a-8fd3-150f006398ba" />
+<img width="804" height="546" alt="13" src="https://github.com/user-attachments/assets/0d3f9727-bf61-457d-b50c-237124041e95" />
 
-2) 커넥터 이름을 간단하게 입력합니다.  
+2) 커넥터 이름을 간단하게 입력합니다.
+
+<img width="804" height="546" alt="14" src="https://github.com/user-attachments/assets/ede9f00c-50f0-42d1-8fc9-2f7c6528dbed" />
+
 3) **Host**에는 아래를 입력합니다.
 - `schoolinfo.go.kr`
-
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/e0729ae4-acc2-4345-9e9a-0c03476f8952" />
 
 ---
 
 ## 13) 인증 방식 설정 (API Key)
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/8eb10270-f31a-44fe-9e3f-8131850889d9" />
+<img width="806" height="547" alt="16" src="https://github.com/user-attachments/assets/79fe7577-4c0c-4fc6-a031-da1d24e1e233" />
 
 인증 설정에서 아래처럼 선택해 주세요.
 - 인증 방식: **API 키**
