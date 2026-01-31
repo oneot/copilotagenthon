@@ -494,9 +494,9 @@ Copilot Studio로 돌아와서,
 
 <img width="804" height="546" alt="28" src="https://github.com/user-attachments/assets/c74c2902-74c1-4ee0-9cc1-57ca50bd36f7" />
 
-5) **입력 추가(Add inputs)** 를 눌러 목록의 쿼리를 모두 추가합니다.
+5) **입력 추가(Add inputs)** 를 눌러 `depthNo`와 `depthNo2`를 **제외한** 목록의 쿼리를 모두 추가합니다.
 
-<img width="803" height="545" alt="29" src="https://github.com/user-attachments/assets/3fac3068-029c-4b38-aac3-91ad5f37dd76" />
+<img width="805" height="546" alt="30" src="https://github.com/user-attachments/assets/f411cb10-5f91-4dcd-a22c-db9e69aeb64b" />
 
 6) `apiKey`는 **사용자 지정 값**으로 바꾸고 본인 키를 넣습니다. (학교 알리미 API에서 복사한) `예시) ad42426604854c398f68eb7359aeafee`
 
