@@ -500,8 +500,6 @@ Copilot Studio로 돌아와서,
 
 6) `apiKey`는 **사용자 지정 값**으로 바꾸고 본인 키를 넣습니다. (학교 알리미 API에서 복사한) `예시) ad42426604854c398f68eb7359aeafee`
 
-<img width="805" height="546" alt="30" src="https://github.com/user-attachments/assets/591d3ab7-88d4-4e3d-b060-a9b05b3226ac" />
-
 7) 상단 **저장(Save)** 을 누릅니다.
 
 <img width="804" height="546" alt="31" src="https://github.com/user-attachments/assets/5fedfd18-808a-4600-be01-0fa8804275ec" />
