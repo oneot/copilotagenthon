@@ -393,127 +393,124 @@ Copilot Studio로 이동합니다.
 3) **Host**에는 아래를 입력합니다.
 - `schoolinfo.go.kr`
 
+<img width="802" height="544" alt="0" src="https://github.com/user-attachments/assets/f21cfaf0-e24f-40d3-ad29-6b4260bcfb90" />
+
 ---
 
-## 13) 인증 방식 설정 (API Key)
+## 9) 인증 방식 설정 (API Key)
 
 <img width="806" height="547" alt="16" src="https://github.com/user-attachments/assets/79fe7577-4c0c-4fc6-a031-da1d24e1e233" />
 
 인증 설정에서 아래처럼 선택해 주세요.
-- 인증 방식: **API 키**
+- 인증 방식: `API 키`
 - 매개 변수 레이블: `apikey`
 - 매개 변수 이름: `apikey`
-- 매개 변수 위치: **Query**
+- 매개 변수 위치: `쿼리`
 
 ---
 
-## 14) 동작(Action) 만들기
+## 10) 동작(Action) 만들기
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/a8ca09dc-2ccc-4507-a0c0-e10bce65f6df" />
+<img width="805" height="546" alt="17" src="https://github.com/user-attachments/assets/8197f1be-4060-42ab-8299-7a1a3d7dbc16" />
 
-1) **새 동작(New Action)**을 선택합니다.  
-2) 동사(Verb)는 **GET**을 선택합니다.  
-3) “샘플에서 가져오기(Import from sample)”를 선택합니다.  
-4) 아래 URL을 넣고 가져오기를 누릅니다.
+- 일반 내용을 위와 같이 넣어 주고, **샘플**에서 **가져오기**를 선택 합니다.
+
+1) 동사(Verb)는 **GET**을 선택합니다.   
+2) 아래 URL을 넣고 가져오기를 누릅니다.
 ```markdown
 https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&apiType=27&pbanYr=2025&sidoCode=11&sggCode=11680&schulKndCode=04&depthNo=10&depthNo2=1
 ```
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/a5c8e6a5-f590-4302-bf98-b9115c3ee1fa" />
+<img width="802" height="544" alt="18" src="https://github.com/user-attachments/assets/6f50c942-b3b5-4c42-9f96-bb58288f6d7a" />
 
 👉 쿼리가 자동 생성되는 것을 확인하실 수 있어요.
 
-<img width="523" height="350" alt="image" src="https://github.com/user-attachments/assets/c9bea6e9-8a0f-4169-b220-ce56c31b7e15" />
-
+<img width="801" height="544" alt="19" src="https://github.com/user-attachments/assets/16630518-dbe1-4b12-82d7-3b7ac471cbdf" />
 
 ---
 
-## 15) 쿼리(Query) 표시 옵션 설정
+## 11) 쿼리(Query) 표시 옵션 설정
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/1b171e99-2788-4211-a8df-7b8cca9cf035" />
+<img width="802" height="536" alt="20" src="https://github.com/user-attachments/assets/00c75588-1772-4e93-9c4b-7a9278caa1b0" />
 
-생성된 쿼리들을 **편집(Edit)**으로 들어가서,
+생성된 **🚨모든🚨**쿼리들을 **편집(Edit)** 으로 들어가서,
 - 표시 여부: **Important**
 - 유형(Type): **string**
 으로 바꿔 주세요.
 
 ---
 
-## 16) Response(응답) 샘플도 넣어주기
-
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/7766d344-0e3d-4505-8a42-a431d6062204" />
+## 12) Response(응답) 샘플도 넣어주기
 
 Response의 **Default → 샘플에서 가져오기**를 선택한 후,  
 아래 URL을 브라우저에서 열어 나온 결과값을 **전체 복사**해서 붙여넣고 가져오기를 누릅니다.
-
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/af3c835b-6f29-4dcd-88e8-e1dc6b22f5d3" />
 
 ```markdown
 https://www.schoolinfo.go.kr/openApi.do?apiKey=ad42426604854c398f68eb7359aeafee&apiType=22&pbanYr=2025&sidoCode=11&sggCode=11680&schulKndCode=02
 ```
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/0b9138b2-f359-44a5-8be9-766ab01c1dee" />
+<img width="803" height="545" alt="21" src="https://github.com/user-attachments/assets/f5fffba0-9b18-455f-89ab-c22521eb239e" />
+
+<img width="804" height="546" alt="22" src="https://github.com/user-attachments/assets/5a004cd8-e1dd-4236-969d-41dff7cb9d96" />
 
 ---
 
-## 17) 커넥터 만들기 & 테스트
+## 13) 커넥터 만들기 & 테스트
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/0ae99358-9613-48d8-ac07-8fd892d5c64c" />
+<img width="802" height="544" alt="23" src="https://github.com/user-attachments/assets/d53dfa12-a734-4ebb-80a2-cd64e43f0dee" />
 
-1) 우측 상단 **커넥터 만들기(Create connector)**를 클릭합니다.  
+1) 우측 상단 **커넥터 만들기(Create connector)** 를 클릭합니다.  
 2) 생성 완료 후 테스트를 진행해볼까요?
 
 - **새 연결(New connection)**을 선택  
 - 본인의 `apiKey`를 입력  
 - 만들기(Create) 클릭
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/ad01d799-dda6-4b74-9bfc-81f26a55d67a" />
+<img width="803" height="545" alt="24" src="https://github.com/user-attachments/assets/71af4672-0fcd-40ef-9a96-1bda9670671e" />
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/14797fa0-0fdf-4540-8551-fd2d8ba14d48" />
-
+<img width="802" height="544" alt="25" src="https://github.com/user-attachments/assets/e8727a90-8de8-4ec7-829f-be2d622db127" />
 
 👉 잘 연결되면 성공입니다! 🎉
 
 ---
 
-## 18) Copilot Studio로 돌아가 커넥터 연결하기
+## 14) Copilot Studio로 돌아가 커넥터 연결하기
 
-Copilot Studio로 돌아와서
-
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/d74fe0b9-930b-48f6-82d4-55013daecffa" />
+Copilot Studio로 돌아와서,
 
 1) 도구 추가에서 `School` 등을 검색합니다.  
-2) 방금 만든 `SchoolinfoAPIConnector`를 선택합니다.  
-3) **추가 및 구성(Add and configure)**을 선택합니다.
+2) 방금 만든 `SchoolinfoAPIConnector`를 선택합니다.
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/dbf7634b-a5df-43f5-9186-a75ce4fe3913" />
+<img width="804" height="546" alt="26" src="https://github.com/user-attachments/assets/361935cc-7afc-47ad-b0ed-582d9cd3623b" />
+
+3) **추가 및 구성(Add and configure)** 을 선택합니다.
+
+<img width="804" height="546" alt="27" src="https://github.com/user-attachments/assets/3b9de457-084b-4873-a647-46561b81bd9a" />
 
 4) “추가 세부 정보”에서 자격 증명을  
    **작성자가 제공한 자격 증명**으로 변경합니다.
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/91d0eaa0-5b68-462b-9f63-4496ab626fd7" />
+<img width="804" height="546" alt="28" src="https://github.com/user-attachments/assets/c74c2902-74c1-4ee0-9cc1-57ca50bd36f7" />
 
-5) **입력 추가(Add inputs)**를 눌러 목록의 쿼리를 모두 추가합니다.
+5) **입력 추가(Add inputs)** 를 눌러 목록의 쿼리를 모두 추가합니다.
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/6ca81d46-f591-4441-bd70-38be54be23d6" />
+<img width="803" height="545" alt="29" src="https://github.com/user-attachments/assets/3fac3068-029c-4b38-aac3-91ad5f37dd76" />
 
 6) `apiKey`는 **사용자 지정 값**으로 바꾸고 본인 키를 넣습니다.
 
-<img width="523" height="355" alt="image" src="https://github.com/user-attachments/assets/f352f9d3-83d4-455d-8df7-16ffc2fc2ef9" />
+<img width="805" height="546" alt="30" src="https://github.com/user-attachments/assets/591d3ab7-88d4-4e3d-b060-a9b05b3226ac" />
 
-7) 상단 **저장(Save)**을 누릅니다.
+7) 상단 **저장(Save)** 을 누릅니다.
 
-<img width="523" height="350" alt="image" src="https://github.com/user-attachments/assets/5c111efe-c2e1-4db1-9af1-227179407d71" />
-
+<img width="804" height="546" alt="31" src="https://github.com/user-attachments/assets/5fedfd18-808a-4600-be01-0fa8804275ec" />
 
 ---
 
-## 19) 마지막으로 에이전트 테스트해보기
+## 15) 마지막으로 에이전트 테스트해보기
 
 우측 상단 **에이전트 테스트 옆 + 버튼**을 클릭해서 테스트를 시작합니다.
 
-<img width="523" height="350" alt="image" src="https://github.com/user-attachments/assets/79b8dd0b-92ce-43ad-a35e-0687497dd192" />
-
+<img width="802" height="537" alt="32" src="https://github.com/user-attachments/assets/e87fedf4-c389-42ab-9120-f6a55d203ff5" />
 
 예시 프롬프트:
 ```markdown
