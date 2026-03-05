@@ -7,7 +7,9 @@
 
 ---
 
-## Global Training Partner Studio 계정 확인
+## 🔥 Global Training Partner Studio 계정 확인
+<details>
+<summary><strong>🔍 여기를 클릭하여 **GTPstudio** 계정을 확인 하세요!</strong></summary>
 
 | Partner | ID | PW |
 |---|---|---|
@@ -18,7 +20,7 @@
 | TekVille | `tekville@GTPstudio.onmicrosoft.com` | `Elevate!` |
 | ToBeEdu | `tobeedu@GTPstudio.onmicrosoft.com` | `Elevate!` |
 
----
+</details>
 
 ## 🧭 전체 진행 흐름 (Quick Navigation)
 
