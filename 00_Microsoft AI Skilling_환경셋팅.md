@@ -6,6 +6,28 @@
 ☁️ **Azure Virtual Desktop (AVD)** 기반의 **표준 개발 환경**을 제공합니다.
 
 ---
+
+## Global Training Partner Studio 계정 확인
+
+| Partner | ID | PW |
+|---|---|---|
+| DMOA | `dmoa@GTPstudio.onmicrosoft.com` | `Elevate!` |
+| Gownet | `gownet@GTPstudio.onmicrosoft.com` | `Elevate!` |
+| Spin | `spin@GTPstudio.onmicrosoft.com` | `Elevate!` |
+| SquareNet | `squarenet@GTPstudio.onmicrosoft.com` | `Elevate!` |
+| TekVille | `tekville@GTPstudio.onmicrosoft.com` | `Elevate!` |
+| ToBeEdu | `tobeedu@GTPstudio.onmicrosoft.com` | `Elevate!` |
+
+---
+
+### dmoa
+<a id="dmoa-id"></a>
+
+**ID**
+```text
+dmoa@GTPstudio.onmicrosoft.com
+
+
 ## 🧭 전체 진행 흐름 (Quick Navigation)
 
 - 👉 [0️⃣ AVD 환경 셋팅](#step0)  
@@ -14,6 +36,7 @@
 - 👉 [3️⃣ Microsoft Foundry 접속](#step3)  
 
 ---
+
 <a id="step0"></a>
 ## 0️⃣ AVD 환경 셋팅 
 
