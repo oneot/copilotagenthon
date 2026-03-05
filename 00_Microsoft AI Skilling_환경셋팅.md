@@ -20,14 +20,6 @@
 
 ---
 
-### dmoa
-<a id="dmoa-id"></a>
-
-**ID**
-```text
-dmoa@GTPstudio.onmicrosoft.com
-
-
 ## 🧭 전체 진행 흐름 (Quick Navigation)
 
 - 👉 [0️⃣ AVD 환경 셋팅](#step0)  
