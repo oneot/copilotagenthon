@@ -1,15 +1,138 @@
-# 🚀 Microsoft AI Skilling 환경셋팅 가이드
+# 🚀 Microsoft AI Skilling 개발 환경 셋팅 가이드
 
-> 🎯 **Microsoft AI Skilling 참가 학교를 위한 환경 셋업 매뉴얼**
+> 🎯 **Microsoft AI Skilling 프로그램을 진행하는 Global Training Partner를 위한 환경 셋업 매뉴얼**
 
-본 Microsoft AI Skilling 프로그램은 참가자 모두에게 **동일한 성능 및 개발 환경**을 제공하기 위해 ☁️ **Azure Virtual Desktop (AVD)** 기반의 표준 개발 환경을 제공합니다.
-
----
-먼저 Azure 구독의 권한을 확인 합니다.
-
-
+본 Microsoft AI Skilling 프로그램은 참가자 모두에게 **동일한 성능 및 개발 환경**을 제공하기 위해  
+☁️ **Azure Virtual Desktop (AVD)** 기반의 **표준 개발 환경**을 제공합니다.
 
 ---
+## 🧭 전체 진행 흐름 (Quick Navigation)
+
+- 👉 [0️⃣ AVD 환경 셋팅](#step0)  
+- 👉 [1️⃣ Windows App 설치 및 실행](#step1)  
+- 👉 [2️⃣ Copilot Studio 접속 및 에이전트 게시](#step2)  
+- 👉 [3️⃣ Microsoft Foundry 접속](#step3)  
+
+---
+<a id="step0"></a>
+## 0️⃣ AVD 환경 셋팅 
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/28d0ba1a-38fc-49d6-a775-adbaea3b1599" />
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/c19cb4c3-a956-4179-9103-0e7a79f3bd23" />
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/5edcbebf-7d4a-4fe0-9b14-fa7d57264628" />
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/f4132a5d-798e-44ac-baa5-16668b764a93" />
+
+### 📌 확인 사항
+
+관리자 계정이 **Azure 구독의 다음 권한 중 하나로 설정되어 있는지 확인합니다.**
+
+- **Owner (소유자)**
+- **Contributor (기여자)**
+
+⚠️ 해당 권한이 없으면 **AVD 리소스 생성이 불가능합니다.**
+
+---
+
+### 👥 Entra ID 동적 Group 설정
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/e0cd4ea6-fef1-48f4-8627-80b15cbcb7d5" />
+
+- Azure Portal에서 **Microsoft Entra ID**에 접속합니다.
+
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/3f7ba499-e837-418a-8d9e-e6231fe709e2" />
+
+- 좌측 메뉴에서 **Groups → 새 그룹(New Group)** 을 선택합니다.
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/ca968336-3e64-4a4c-aea8-78626c1fe5e1" />
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/758a079b-0349-4ade-adc1-7127afbdd3a4" />
+
+- **Group type:** 보안(Security)
+- **Group Name:** 임의 기입
+- **Membership type:** 동적 사용자(Dynamic User)
+
+이후 **동적 쿼리 추가(Add Dynamic Query)** 를 선택합니다.
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/ccdfa29c-225c-4a81-ac00-92dc264f07f7" />
+
+- 우측의 **편집(Edit)** 을 선택합니다.
+
+- 아래 쿼리를 복사하여 붙여 넣습니다.
+
+- **테넌트 전체 사용자를 동적으로 그루핑하는 쿼리 입니다.**
+
+```
+(user.accountEnabled-eq true)-and (user.userType-eq "Member")
+```
+
+ 📌 **설명**
+
+해당 쿼리는 다음 사용자를 자동으로 그룹에 포함합니다.
+
+- 계정이 **활성화된 사용자**
+- **Member 유형 사용자**
+
+즉, **테넌트의 모든 내부 사용자**를 자동으로 그룹에 포함합니다.
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/0677c740-61bb-45ab-b442-3f43e5784908" />
+
+- **저장(Save)** 을 선택합니다.
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/d4b7e286-9f07-4a5c-a52a-d5129a8f3818" />
+
+- **만들기(Create)** 를 선택하여 그룹 생성을 완료합니다.
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/4238850f-0542-45b4-8d25-ed2061d593ca" />
+
+- 테넌트의 모든 구성원이 **동적으로 그룹에 자동 할당된 것을 확인합니다.**
+
+---
+
+### ☁️ Azure Virtual Desktop (AVD) 구축
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/e21a6194-7474-4bef-ae5b-a42ce753d49d" />
+
+- Azure Portal에서 **Azure Virtual Desktop** 을 검색 후 선택합니다.
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/07060435-d898-4f31-8402-83f4ce915b78" />
+
+- 좌측 메뉴에서 **빠른 시작 (Quick Start)** 을 선택합니다.
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/5b3b5c60-d1e4-47b4-85f8-f99a58e766e6" />
+
+- **Azure Virtual Desktop 선택**
+- **만들기(Create)** 클릭
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/64238c0b-a71a-41a6-bdd1-1ccab9edd1f9" />
+
+- **구독**: 권한 확인이 완료된 Azure Subscription 선택
+
+- **위치**: `Korea Central`
+
+- **사용자 이름 / 암호**: 임의 생성 후 안전하게 저장
+
+- **할당**: **최대 두 명의 사용자 선택**
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/c78e1611-389f-4fe6-969b-ab31aee12405" />
+
+- 이전에 생성한 **동적 그룹(Dynamic Group)** 을 선택합니다.
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/9b4b7ca7-43a6-4f1c-8f42-38c103aaf390" />
+
+- **검토 + 만들기 (Review + Create)** 를 선택합니다.
+
+<img width="1660" height="1076" alt="screenshot" src="https://github.com/user-attachments/assets/39a0afda-434f-42b8-8cc6-2b2065581040" />
+
+- 유효성 검사를 통과하면 **만들기(Create)** 를 선택합니다.
+
+<img width="1704" height="1120" alt="screenshot" src="https://github.com/user-attachments/assets/c34354e0-7576-4a24-954d-3853fdbf0d37" />
+
+- 오류 없이 배포가 완료되면 **Azure Virtual Desktop 환경이 정상적으로 구축된 것입니다.**
+- 이제 참가자는 **표준 개발 환경에서 동일한 성능으로 AI Skilling 프로그램을 진행할 수 있습니다.**
 
 ## 🧭 전체 진행 흐름 (Quick Navigation)
 
