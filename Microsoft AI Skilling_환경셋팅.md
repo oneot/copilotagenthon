@@ -9,7 +9,7 @@
 
 ## 🔥 Global Training Partner Studio 계정 확인
 <details>
-<summary><strong>🔍 여기를 클릭하여 **GTPstudio** 계정을 확인 하세요!</strong></summary>
+<summary><strong>🔍 여기를 클릭하여 GTPstudio 계정을 확인 하세요!</strong></summary>
 
 | Partner | ID | PW |
 |---|---|---|
