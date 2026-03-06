@@ -83,7 +83,7 @@
 - **테넌트 전체 사용자를 동적으로 그루핑하는 쿼리 입니다.**
 
 ```
-(user.accountEnabled-eq true)-and (user.userType-eq "Member")
+(user.accountEnabled -eq true) -and (user.userType -eq "Member")
 ```
 
  📌 **설명**
