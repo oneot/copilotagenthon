@@ -162,8 +162,6 @@
 <a id="step1"></a>
 ## 1️⃣ Windows App 설치 및 실행 (AVD Client)
 
-<details>
-<summary><strong>🔍 여기를 클릭하여 Windows App 설치 및 실행 절차를 확인하세요. Window OS를 이미 사용하시는 경우, 2번으로 넘어가시길 추천 드립니다!</strong></summary>
 Azure Virtual Desktop(AVD)에 접속하기 위해 먼저 **Windows App (AVD Client)** 를 설치합니다.
 
 ### 📥 Windows App 다운로드
