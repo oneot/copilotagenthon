@@ -1,4 +1,4 @@
-# 🚀 Microsoft AI Skilling 개발 환경 셋팅 가이드
+# 🚀 Global Training Partner | Microsoft AI Skilling 개발 환경 셋팅 가이드
 
 > 🎯 **Microsoft AI Skilling 프로그램을 진행하는 Global Training Partner를 위한 환경 셋업 매뉴얼**
 
